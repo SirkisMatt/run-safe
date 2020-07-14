@@ -1,19 +1,37 @@
 'use strict';
 
+let map
 
 
 function initMap() {
     //initialize map on specific destination
     let myLatlng = {lat: -41.269, lng: 173.285};
-    let map = new google.maps.Map(
+    map = new google.maps.Map(
         document.getElementById('map'), {zoom: 4, center: myLatlng});
-
+}
     // Create the initial InfoWindow.
-  let infoWindow = new google.maps.InfoWindow({
+  /*let infoWindow = new google.maps.InfoWindow({
       content: 'Click the map to see if it is safe to exercise outside!', 
       position: myLatlng
     });
-    infoWindow.open(map);
+    infoWindow.open(map);*/
+    
+   /*console.log("Lat", latitude);
+    console.log("Lng", longitude);
+if (latitude >= -90) {
+    console.log("Lng", longitude);
+    postInfo(latitude, longitude, map)
+    //infoWindow.close();
+    let contentString = '<div id="content">Oi</div>'
+    // Create a new InfoWindow.
+    let infoWindow = new google.maps.InfoWindow({
+        position: { lat: -34.397, lng: 150.644 },
+        map: map,
+        maxWidth: 200
+    });
+    infoWindow.setContent(contentString);
+    infoWindow.open(map);*/
+
     /*
     // Configure the click listener.
     map.addListener('click', function(mapsMouseEvent) {
@@ -36,28 +54,7 @@ function initMap() {
   map.addListener("click", function(e) {
     postInfo(e.latLng, map);
   });*/
-}
 
-
-
-//get lat,lng from click event and pass it into url
-/*function airByLatLon(lat, lon){
-    fetch (`https://api.waqi.info/feed/geo:${lat};${lon}/?token=`)
-    .then(response => {
-        if (response.ok) {
-        return response.json();
-        }
-        throw new Error(response.statusText);
-    })
-    //Pass json results to displayResults function
-    .then(responseJson => displayResults(responseJson))
-    .catch(err => {
-        $('#js-error-message').text(`Something went wrong: ${err.message}`);
-    }); 
-}
-
-
-*/
 function displayResults(responseJson){
     console.log(responseJson);
    console.log(responseJson.data.city.name);
@@ -70,35 +67,34 @@ function displayResults(responseJson){
    let latitude = parseFloat(coords[0]);
    let longitude = parseFloat(coords[1]);
    
-    postInfo(latitude, longitude, map);
+    //postInfo(latitude, longitude, map);
   
-   /*
-   
    // if there are previous results, remove them
-    $('#content').empty();
+    //$('#content').empty();
 
-    $('#content').append(`<div id="content"><div id="siteNotice"></div><h1 id="firstHeading">${responseJson.data.city.name}
+    let contentString = `<div id="content"><div id="siteNotice"></div><h1 id="firstHeading">${responseJson.data.city.name}
     </h1><div id="bodyContent"><p>AQI ${responseJson.data.aqi}</p><p>Updated ${responseJson.data.time.s}
     </p><button id='infoButton'>Click for more info</button>
-    </div></div>`);*/
-  
+    </div></div>`;
+    postInfo(latitude, longitude, map, contentString);
 
 }
 
 //Info window function
-function postInfo(latitude, longitude, map) {
-    
+function postInfo(latitude, longitude, map, contentString) {
+    if (infoWindow){
+       infoWindow.close();
+    }
     console.log("Lat", latitude);
    console.log("Lng", longitude);
-    //let myLatLng = new google.maps.LatLng(-41.27822953, 173.27352648);
-    //console.log(myLatLng);
-    
-    let contentString = '<div id="content">Oi</div>'
+  
     // Create a new InfoWindow.
+   
     let infoWindow = new google.maps.InfoWindow({
-        position: { lat: -34.397, lng: 150.644 },
+        position: { lat: latitude, lng: longitude },
         map: map,
         maxWidth: 200
+    
     });
     infoWindow.setContent(contentString);
     infoWindow.open(map);
