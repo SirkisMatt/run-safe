@@ -37,3 +37,21 @@
     clear: both;
     display: table;
   }
+.green {
+    background: green;
+}
+.yellow{
+    background: yellow;
+}
+.orange {
+    background-color: orange;
+}
+.red {
+    background-color: red;
+}
+.purple {
+    background-color: purple;
+}
+.really-red {
+    background-color: #7E0322;
+}
