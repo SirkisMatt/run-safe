@@ -13,13 +13,13 @@
         <h1>Run Safe</h1>
         <h2>Search your City to see if the air is safe to exercise in.</h2>
     </div>
-    <div><form class="example" action="/action_page.php">
+    <div><form class="window" action="/action_page.php">
         <input type="text" placeholder="Search City" name="search" id="city">
         <button type="submit"><i class="fa fa-search"></i></button>
       </form></div>
     <div id="map"></div>
     <div id="js-error-message"></div>
-    <div id="more-info" class="info"></div>
+    <table id="more-info" class="info"></table>
     <!--<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.epa.gov%2Fwildfire-smoke-course%2Fwildfire-smoke-and-your-patients-health-air-quality-index&psig=AOvVaw1TMw5_fuYP3izg5bFTapsT&ust=1594814888050000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIjBi8fazOoCFQAAAAAdAAAAABAV" alt="AQI Chart">-->
       
     
@@ -27,6 +27,7 @@
     <script async defer 
     src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"crossorigin="anonymous"></script>
+    <script type='text/javascript' src='config.js'></script>
     <script src="index.js"></script>
 </body>
 </html>

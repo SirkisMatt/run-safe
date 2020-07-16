@@ -7,7 +7,7 @@
     box-sizing: border-box;
   }
   
-  form.example input[type=text] {
+  form.window input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
@@ -16,7 +16,7 @@
     background: #f1f1f1;
   }
   
-  form.example button {
+  form.window button {
     float: left;
     width: 20%;
     padding: 10px;
@@ -28,11 +28,11 @@
     cursor: pointer;
   }
   
-  form.example button:hover {
+  form.window button:hover {
     background: #0b7dda;
   }
   
-  form.example::after {
+  form.window::after {
     content: "";
     clear: both;
     display: table;
@@ -56,12 +56,27 @@
     background-color: #7E0322;
 }
 
-.info {
-    align-content: center;
-    color: blue;
-    
-}
 
-#0 {
-    color: darkgoldenrod;
-}
+
+.info {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .info td, .info th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .info tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .info tr:hover {background-color: #ddd;}
+  
+  .info th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
