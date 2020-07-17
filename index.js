@@ -1,6 +1,6 @@
 'use strict';
-var mapKey = config.MAP_KEY;
-var otherKey = config.KEY_2;
+//api key for AQI API 
+var aqiKey = '';
 //map and infoWindow set to global scope
 let map 
 let infoWindow = null
@@ -8,8 +8,28 @@ let infoWindow = null
 function initMap() {
     //initialize map on specific destination
     let myLatlng = {lat: -41.269, lng: 173.285};
-    map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 4, center: myLatlng});
+    //set map to user location if their geolocation is on 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            let pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }; 
+            map = new google.maps.Map(
+                document.getElementById('map'), {
+                    zoom: 7, 
+                    center: pos
+                }); 
+        });     
+    } else {
+        map = new google.maps.Map(
+            document.getElementById('map'), {
+                zoom: 4, 
+                center: myLatlng
+            });
+    }
+    
 };
 
 //responseJson and forecast set to global scope
@@ -122,7 +142,7 @@ function postInfo(latitude, longitude, map, contentString) {
 //Get Air quality by City
 function getAir(searchTerm){
  
-    fetch(`https://api.waqi.info/feed/${searchTerm}/?token=` + otherKey)
+    fetch(`https://api.waqi.info/feed/${searchTerm}/?token=` + aqiKey)
     .then(response => {
         if (response.ok) {
         $('#js-error-message').empty();

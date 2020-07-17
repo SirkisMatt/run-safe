@@ -1,12 +1,18 @@
+
+ * {
+    box-sizing: border-box;
+  }
+
+            /**********************Map***************************/
+            
 #map {
     height: 400px;
     width: 100%;
   }
 
-  * {
-    box-sizing: border-box;
-  }
-  
+ 
+        /******************Search Bar**********************/
+
   form.window input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -37,6 +43,9 @@
     clear: both;
     display: table;
   }
+
+        /************************Info Window********************/
+
 .green {
     background: green;
 }
@@ -57,6 +66,7 @@
 }
 
 
+        /************************Forecast***********************/
 
 .info {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
