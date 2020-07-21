@@ -4,7 +4,7 @@
   }
 
             /**********************Map***************************/
-            
+
 #map {
     height: 400px;
     width: 100%;
@@ -66,12 +66,27 @@
 }
 
 
+    /*************************Tables***********************/
+
+    #tables:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 300px;
+    }
+
+
         /************************Forecast***********************/
 
 .info {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+   /* width: 100%;*/
   }
   
   .info td, .info th {
@@ -84,9 +99,17 @@
   .info tr:hover {background-color: #ddd;}
   
   .info th {
-    padding-top: 12px;
+    /*padding-top: 12px;*/
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color:#526778;
     color: white;
+  }
+
+ 
+
+  /********************* AQI Table *************************/
+
+  #aqi-header {
+      background:#929aa1e1;
   }
