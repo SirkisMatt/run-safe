@@ -1,15 +1,15 @@
 
  @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@200&display=swap');
  
- body {
+body {
     background-color: rgb(63, 62, 56);
- }
+}
  
- * {
+* {
     box-sizing: border-box;
-  }
+}
 
-            /**********************Map***************************/
+        /**********************Map***************************/
 
 #map {
     height: 280px;
@@ -18,16 +18,16 @@
     align-content: center;
     margin-left: auto;
     margin-right: auto;
-  }
+}
 
         /*********************Title************************/
+
 #title {
     text-align: center;
 }
 
 #title h1 {
     font-family: 'Oswald', sans-serif;
-    /*padding-left: 30px;*/
     font-size: 2em;
     color: #F2F0E1;
 }
@@ -36,11 +36,9 @@
     font-family: 'Montserrat', sans-serif;
     color: rgb(168, 167, 164);
     font-size: 1.2em;
-    /*padding-left: 30px;*/
     padding: 20px;
     
 }
-
  
         /******************Search Bar**********************/
 
@@ -54,16 +52,16 @@
 }
 
   
-    form.window input[type=text] {
+form.window input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
     width: 80%;
     background: #f1f1f1;
-  }
+}
   
-  form.window button {
+form.window button {
     float: left;
     width: 20%;
     padding: 10px;
@@ -73,17 +71,17 @@
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-  }
+}
   
-  form.window button:hover {
+form.window button:hover {
     background: #5c9b7d;
-  }
+}
   
-  form.window::after {
+form.window::after {
     content: "";
     clear: both;
     display: table;
-  }
+}
 
         /************************Info Window********************/
 
@@ -144,49 +142,52 @@
     margin-left: auto;
     margin-right: auto;
     font-size: 1.1em;
-  }
+}
   
-  .info td, .info th {
+.info td, .info th {
     padding: 8px;
-  }
+}
   
-  .info tr:nth-child(even){background-color: #87E6B8;}
+.info tr:nth-child(even){
+    background-color: #87E6B8;
+}
 
-  .info tr:nth-child(odd){background-color: #599679;}
+.info tr:nth-child(odd){
+    background-color: #599679;
+}
   
   
-  .info th {
-    /*padding-top: 12px;*/
+.info th {
     padding-bottom: 12px;
     text-align: left;
     background-color:#F2F0E1;
     color: #2A2924;
-  }
+}
 
-  #forecast-title {
+#forecast-title {
     font-family: 'Montserrat', sans-serif;
     color: rgb(168, 167, 164);
     text-align: center;
     font-size: 1.8em; 
-  }
+}
 
-  #forecast-header {
+#forecast-header {
     font-family: 'Montserrat', sans-serif;
     color: rgb(168, 167, 164);
     justify-content: center;
     font-size: 1.2em; 
     padding-bottom: 10px;
-  }
+}
  
 
     /********************* Gaps *************************/
 
-  hr {
-      width: 80%;
-      color: rgb(168, 167, 164);
-  }
+hr {
+    width: 80%;
+    color: rgb(168, 167, 164);
+}
 
-  .gap-sm {
+.gap-sm {
     padding: 20px;
     width: auto;
 }
@@ -214,23 +215,22 @@
 
 
 .column {
-   /* Within a circle, centered text looks prettier. */
-  text-align : center;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  margin: .5em;
-  padding : .5em;
-  width  : 4em;
-  height : 4em;
-  /* and let's turn the square into a circle */
-  border-radius: 100%;
-  cursor: pointer;
-  }
+    text-align : center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: .5em;
+    padding : .5em;
+    width  : 4em;
+    height : 4em;
+    /* and let's turn the square into a circle */
+    border-radius: 100%;
+    cursor: pointer;
+}
 
-  .column:hover {
+.column:hover {
     transform: scale(1.1)
-  }
+}
 
     /*********************button border*****************/
 
@@ -266,29 +266,28 @@
 
     /************************* ContainerTab *************************/
 
-  .containerTab {
+.containerTab {
     padding: 20px;
     font-family: 'Montserrat', sans-serif;
-  }
+}
   
   /* Clear floats after the columns */
-  .row:after {
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
   
   /* Closable button inside the image */
-  .closebtn {
+.closebtn {
     float: right;
-    
     font-size: 35px;
     cursor: pointer;
-  }
+}
 
-  .hidden {
-      display: none;
-  }
+.hidden {
+    display: none;  
+}
 
     /************************** min-width 400px ******************/
 
@@ -296,7 +295,7 @@
     #map {
         height: 320px;
         width: 100%;
-      }
+    }
     #search {
         width: 100%;
     }
@@ -316,6 +315,7 @@
 
 }
 
+        /************************** min-with: 800px *****************************/
 
 @media only screen and (min-width: 800px) {
     #map {
@@ -336,6 +336,4 @@
         /*padding-left: 40px;*/
         text-align: center;
     }
-
 }
-

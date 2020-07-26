@@ -146,6 +146,7 @@ function postInfo(latitude, longitude, map, contentString) {
 
 //api key for AQI API 
 var aqiKey = 'cd6787d500a356713b424fe3ac549f5e6a1179e6';
+
 //Get Air quality by City
 function getAir(searchTerm){
  
@@ -175,7 +176,6 @@ function openTab(tabName) {
     document.getElementById(tabName).style.display = "block";
     let element = document.getElementById(tabName)
     element.scrollIntoView({ behavior: 'smooth', block: 'end'});
-    
   }
 
 
@@ -185,9 +185,6 @@ function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         searchTerm = $('#city').val();
-        console.log(searchTerm);
-      //geocodeAddress(searchTerm);
-
         getAir(searchTerm);
 });
 };
