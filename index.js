@@ -56,34 +56,34 @@ console.log(responseJson);
     //if else to add class="color" depending on aqi
     //onClick="pm25Forecast()" to add forecast under map
     if (aqi <= 50) {
-    contentString = `<div id="content" ><h3 id="firstHeading">${city}
-        </h3><p class="green">AQI ${aqi}</p><p>Good Quality!</p><p>Should be good for a run!</p><p>Updated ${responseJson.data.time.s}
-        </p><a href="${responseJson.data.city.url}" target="blank">More Info</a>
+    contentString = `<div id="content" ><h3 id="firstHeading" class="green">AQI ${aqi}
+        </h3><p><span class="underline">Location:</span> ${city}</p><p>Good Quality!</p><p>Updated: ${responseJson.data.time.s}
+        </p><a href="${responseJson.data.city.url}" target="blank" class="link">More Info</a>
         </div>`;
     } else if (aqi >= 51 && aqi <= 100) {
-    contentString = `<div id="content" ><h3 id="firstHeading">${city}
-        </h3><p class="yellow">AQI ${aqi}</p><p>Moderate</p><p>Updated ${responseJson.data.time.s}
-        </p><a href="${responseJson.data.city.url}" target="blank">More Info</a>
+    contentString = `<div id="content"><h3 id="firstHeading" class="yellow">AQI ${aqi}
+        </h3><p><span class="underline">Location:</span> ${city}</p><p>Moderate</p><p>Updated ${responseJson.data.time.s}
+        </p><a href="${responseJson.data.city.url}" target="blank" class="link">More Info</a>
         </div>`;
     } else if (aqi >= 101 && aqi <= 150) {
-        contentString = `<div id="content" ><h3 id="firstHeading">${city}
-        </h3><p class="orange">AQI ${aqi}</p><p>Unhealthy for Sensitive Groups</p><p>Updated ${responseJson.data.time.s}
-        </p><a href="${responseJson.data.city.url}" target="blank">More Info</a>
+        contentString = `<div id="content"><h3 id="firstHeading" class="orange">AQI ${aqi}
+        </h3><p><span class="underline">Location:</span> ${city}<p>Unhealthy for Sensitive Groups</p><p>Updated ${responseJson.data.time.s}
+        </p><a href="${responseJson.data.city.url}" target="blank" class="link">More Info</a>
         </div>`;
     } else if (aqi >= 151 && aqi <= 200) {
-        contentString = `<div id="content" ><h3 id="firstHeading">${city}
-        </h3><p class="red">AQI ${aqi}</p><p>Unhealthy</p><p>Updated ${responseJson.data.time.s}
-        </p><a href="${responseJson.data.city.url}" target="blank">More Info</a>
+        contentString = `<div id="content" ><h3 id="firstHeading" class="red">AQI ${aqi}
+        </h3><p><span class="underline">Location:</span> ${city}</p><p>Unhealthy</p><p>Updated ${responseJson.data.time.s}
+        </p><a href="${responseJson.data.city.url}" target="blank" class="link">More Info</a>
         </div>`;
     } else if (aqi >= 201 && aqi < 300) {
-        contentString = `<div id="content" ><h3 id="firstHeading">${city}
-        </h3><p class="purple">AQI ${aqi}</p><p>Very Unhealthy</p><p>Updated ${responseJson.data.time.s}
-        </p><a href="${responseJson.data.city.url}" target="blank">More Info</a>
+        contentString = `<div id="content" ><h3 id="firstHeading" class="purple">AQI ${aqi}
+        </h3><p><span class="underline">Location:</span> ${city}</p><p>Very Unhealthy</p><p>Updated ${responseJson.data.time.s}
+        </p><a href="${responseJson.data.city.url}" target="blank" class="link">More Info</a>
         </div>`;
     } else {
-        contentString = `<div id="content"><h3 id="firstHeading">${city}
-        </h3><p class="really-red">AQI ${aqi}</p><p>Hazardous</p><p>Updated ${responseJson.data.time.s}
-        </p><a href="${responseJson.data.city.url}" target="blank">More Info</a>
+        contentString = `<div id="content"><h3 id="firstHeading" class="really-red">AQI ${aqi}
+        </h3><p><span class="underline">Location:</span> ${city}</p><p>Hazardous</p><p>Updated ${responseJson.data.time.s}
+        </p><a href="${responseJson.data.city.url}" target="blank" class="link">More Info</a>
         </div>`;
     }
     //Create infoWindow and place on map in City's coords
@@ -95,13 +95,14 @@ function pm25Forecast(){
     //empty more-info if there is anything
     $('#more-info').empty();
     $("#forecast-header").empty();
+    $('.show').show();
    
 let table = $("<table></table>");
 let thead = $("<thead></thead>");
 thead.append($("<th></th>").html("Date"));
-thead.append($("<th></th>").html("pm25 Average"));
-thead.append($("<th></th>").html("pm25 Max"));
-thead.append($("<th></th>").html("pm25 Min"));
+thead.append($("<th></th>").html("Average pm25"));
+thead.append($("<th></th>").html("Max pm25"));
+thead.append($("<th></th>").html("Min pm25"));
 let tbody = $("<tbody></tbody>");
     //iterate through forecast array and append to table body
     for (let i = 2; i < forecast.length; i++) {
@@ -159,28 +160,24 @@ function getAir(searchTerm){
     //Pass json results to displayResults function
     .then(responseJson => displayResults(responseJson))
     .catch(err => {
-        $('#js-error-message').text(`Sorry we don't have a reading of that City!`);
-
+        Swal.fire(`Sorry, we don't have a reading of that city`);
     }); 
 };
 
-
-
-/*function geocodeAddress(searchTerm) {
-    var geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("address").value;
-  geocoder.geocode({ address: address }, function(results, status) {
-    if (status === "OK") {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
+// Hide all elements with class="containerTab", except for the one that matches the clickable grid column
+function openTab(tabName) {
+    let i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
     }
-  });
-}*/
+    $('hidden').remove();
+    document.getElementById(tabName).style.display = "block";
+    let element = document.getElementById(tabName)
+    element.scrollIntoView({ behavior: 'smooth', block: 'end'});
+    
+  }
+
 
 let searchTerm
 //listen for search and pass searchTerm into getAir()

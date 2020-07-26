@@ -7,68 +7,105 @@
     <title>Time to Charge</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="title">
-        <h1>Run Safe</h1>
-        <h2>Search your City to see if the air is safe to exercise in.</h2>
+        <h1>RUN <br> SAFE</h1> 
+        <h2>Search your city to see if the air is safe to exercise in.</h2>
     </div>
-    <div><form class="window" action="/action_page.php">
-        <input type="text" placeholder="Search City" name="search" id="city">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form></div>
+    <div id="search">
+        <form class="window" action="/action_page.php">
+            <input type="text" placeholder="Search City" name="search" id="city">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    
     <div id="map"></div>
+    
     <div id="js-error-message"></div>
-    <div id="tables">
-        <h2 id="forecast-header"></h2>
-    <table id="more-info" class="info column"></table>
-    <table id="aqi-table" class="column">
-        <tr id="aqi-header">
-            <th>Air Quality Index</th>
-            <th>Health Implications</th>
-            <th>Cautionary Statement (for PM2.5)</th>
-          </tr>
-          <tr class="green">
-            <td>0-50</td>
-            <td>Air quality is considered satisfactory, and air pollution poses little or no risk</td>
-            <td>None</td>
-          </tr>
-          <tr class="yellow">
-            <td>51-100</td>
-            <td>Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</td>
-            <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.
-            </td>
-          </tr>
-          <tr class="orange">
-            <td>101-150</td>
-            <td>Members of sensitive groups may experience health effects. The general public is not likely to be affected.</td>
-            <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.
-            </td>
-          </tr>
-          <tr class="red">
-            <td>151-200</td>
-            <td>Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects</td>
-            <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion
-            </td>
-          </tr>
-          <tr class="purple">
-            <td>201-300</td>
-            <td>Health warnings of emergency conditions. The entire population is more likely to be affected.</td>
-            <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.
-            </td>
-          </tr>
-          <tr class="really-red">
-            <td>300+</td>
-            <td>Health alert: everyone may experience more serious health effects</td>
-            <td>Everyone should avoid all outdoor exertion
-            </td>
-          </tr>
-    </table>
+
+<div class="hidden show">
+    <div class="gap-sm"></div> 
+    <hr>
+    <div class="gap-sm"></div> 
+
+    <h2 id="forecast-title">Forecast</h2>
 </div>
+    <div id="tables">
+        <h2 id="forecast-header"></h2> 
+    <table id="more-info" class="info"></table>
+    <br class="hidden show">
+
+    <div class="gap-sm"></div> 
+    <hr>
+    <div class="gap-sm"></div> 
+
+<div id="aqi-title"><h3>Air Quality Index</h3></div> 
+<!-- The grid: three columns -->
+<div id="aqi-boxes">
+    
+    <div class="container">
+        <div class="column g" onclick="openTab('b1');" >0-50</div>
+        <div class="column y" onclick="openTab('b2');" >51-100</div>
+        <div class="column o" onclick="openTab('b3');" >101-150</div>
+        <div class="column r" onclick="openTab('b4');" >151-200</div>
+        <div class="column p" onclick="openTab('b5');" >201-300</div>
+        <div class="column rr" onclick="openTab('b6');" >300+</div>
+    </div>    
+
+    <div class="gap-sm"></div> 
+  
+    <!-- The expanding grid (hidden by default) -->
+    <div id="b1" class="containerTab green hidden" >
+        <!-- If you want the ability to close the container, add a close button -->
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h3>Good Quality</h3>
+        <p>Air quality is considered satisfactory, and air pollution poses little or no risk.</p>
+    </div>
+  
+    <div id="b2" class="containerTab yellow hidden">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h3>Moderate Quality</h3>
+        <p>Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</p>
+        <p>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</p>
+    </div>
+  
+    <div id="b3" class="containerTab orange hidden">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h3>Unhealthy for Sensitive Groups</h3>
+        <p>Members of sensitive groups may experience health effects. The general public is not likely to be affected.</p>
+        <p>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</p>
+    </div>
+
+    <div id="b4" class="containerTab red hidden">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h3>Unhealthy</h3>
+        <p>Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</p>
+        <p>Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.</p>
+    </div>
+
+    <div id="b5" class="containerTab purple hidden">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h3>Very Unhealthy</h3>
+        <p>Health warnings of emergency conditions. The entire population is more likely to be affected.</p>
+        <p>Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</p>
+    </div>
+
+    <div id="b6" class="containerTab really-red hidden">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h3>Hazardous</h3>
+        <p>Health alert: Everyone may experience more serious health effects.</p>
+        <p>Everyone should avoid all outdoor exertion.</p>
+    </div>
+</div>
+
+
     
    
     <script async defer 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp2dXxbSHp-6IrdWptvOhF3NiYjTBnL78&callback=initMap" type="text/javascript"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5TRZ7BCKPTy2UlRB1NQBYMLT1fyAr1eM&callback=initMap" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
