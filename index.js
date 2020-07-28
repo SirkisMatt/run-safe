@@ -4,33 +4,6 @@
 let map 
 let infoWindow = null
 
-function initMap() {
-    //initialize map on specific destination
-    let myLatlng = {lat: -41.269, lng: 173.285};
-    //set map to user location if their geolocation is on 
-    /*if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          function(position) {
-            let pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            }; 
-            map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 7, 
-                    center: pos
-                }); 
-        });     
-    } else {*/
-        map = new google.maps.Map(
-            document.getElementById('map'), {
-                zoom: 4, 
-                center: myLatlng
-            });
-    //}
-    
-};
-
 //forecast set to global scope
 let forecast
 let city
@@ -39,12 +12,10 @@ function displayResults(responseJson){
 console.log(responseJson);
     //get coords, and separate lat and lon to pass into postInfo()
     let coords = responseJson.data.city.geo
-    console.log(coords)
     let aqi = responseJson.data.aqi
     //grab lat and lon numbers from coords array
     let latitude = parseFloat(coords[0]);
     let longitude = parseFloat(coords[1]);
-    console.log(responseJson.data.city.url);
 
     //get forecast / city and declare it so you can use it in pm25Forecast()
     forecast = responseJson.data.forecast.daily.pm25
@@ -121,7 +92,31 @@ let tbody = $("<tbody></tbody>");
         $("#more-info").append(table);    
         console.log(city)
         $("#forecast-header").prepend(`${city}`);
+};
 
+
+function initMap() {
+    //initialize map on specific destination
+    let myLatlng = {lat: 0, lng: -20};
+    map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 2, 
+            center: myLatlng
+        });
+    //set map to user location if their geolocation is on 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            let pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }; 
+            map = new google.maps.Map(
+                document.getElementById('map'), {
+                    zoom: 6, 
+                    center: pos
+                }); 
+        });     
+    } 
 };
 
 //Adds infoWindow in Map
@@ -137,8 +132,8 @@ function postInfo(latitude, longitude, map, contentString) {
         position: { lat: latitude, lng: longitude },
         map: map,
         maxWidth: 200
-    
     });
+
     infoWindow.setContent(contentString);
     infoWindow.open(map);
     pm25Forecast();
@@ -161,7 +156,7 @@ function getAir(searchTerm){
     //Pass json results to displayResults function
     .then(responseJson => displayResults(responseJson))
     .catch(err => {
-        Swal.fire(`Sorry, we don't have a reading of that city`);
+        Swal.fire(`Sorry, we don't have a reading of that city.`);
     }); 
 };
 
