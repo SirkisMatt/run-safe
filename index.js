@@ -8,7 +8,7 @@ function initMap() {
     //initialize map on specific destination
     let myLatlng = {lat: -41.269, lng: 173.285};
     //set map to user location if their geolocation is on 
-    if (navigator.geolocation) {
+    /*if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           function(position) {
             let pos = {
@@ -21,13 +21,13 @@ function initMap() {
                     center: pos
                 }); 
         });     
-    } else {
+    } else {*/
         map = new google.maps.Map(
             document.getElementById('map'), {
                 zoom: 4, 
                 center: myLatlng
             });
-    }
+    //}
     
 };
 
