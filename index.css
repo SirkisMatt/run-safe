@@ -2,7 +2,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@200&display=swap');
  
 body {
-    background-color: rgb(63, 62, 56);
+    background-color: #272625;
 }
  
 * {
@@ -98,10 +98,10 @@ form.window::after {
     background-color:rgb(235, 71, 71);
 }
 .purple {
-    background-color: rgb(184, 55, 184);
+    background-color: #E864E8;
 }
 .really-red {
-    background-color: rgba(172, 23, 60, 0.863);
+    background-color: #E28398;
 }
 
 #content {
@@ -255,20 +255,28 @@ hr {
 }
 
 .p {
-    border: solid rgb(184, 55, 184);
-    color: rgb(184, 55, 184)
+    border: solid #D676D6;
+    color: #EEC9EE;
 }
 
 .rr {
-    border: solid rgba(172, 23, 60, 0.863);
-    color: rgba(172, 23, 60, 0.863)
+    border: solid #E28398;
+    color: #E6A2B4;
 }
 
     /************************* ContainerTab *************************/
 
 .containerTab {
     padding: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;  
+}
+
+.containerTab h3 {
+    font-size: 1.4em;
+}
+
+.containerTab p {
+    font-size: 1.1em;
 }
   
   /* Clear floats after the columns */
@@ -309,6 +317,19 @@ hr {
         font-size: 1.5em;
     }
 
+    .column {
+        width  : 5em;
+        height : 5em;
+    }
+
+    .containerTab h3 {
+        font-size: 1.7em;
+    }
+
+    .containerTab p {
+        font-size: 1.2em;
+    }
+
     .container {
         justify-content: space-around;
     }
@@ -328,8 +349,8 @@ hr {
     
     
     .column {
-        width  : 5em;
-        height : 5em;
+        width  : 6em;
+        height : 6em;
     }
 
     #title {

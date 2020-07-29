@@ -4,6 +4,34 @@
 let map 
 let infoWindow = null
 
+function initMap() {
+    //initialize map on specific destination
+    let myLatlng = {lat: 0, lng: -20};
+    
+    $(document).ready(function(){
+    map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 2, 
+            center: myLatlng
+        });
+    
+    //set map to user location if their geolocation is on 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            let pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }; 
+            map = new google.maps.Map(
+                document.getElementById('map'), {
+                    zoom: 6, 
+                    center: pos
+                }); 
+        });     
+    }
+}); 
+};
+
 //forecast set to global scope
 let forecast
 let city
@@ -95,30 +123,6 @@ let tbody = $("<tbody></tbody>");
 };
 
 
-function initMap() {
-    //initialize map on specific destination
-    let myLatlng = {lat: 0, lng: -20};
-    map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 2, 
-            center: myLatlng
-        });
-    //set map to user location if their geolocation is on 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          function(position) {
-            let pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            }; 
-            map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 6, 
-                    center: pos
-                }); 
-        });     
-    } 
-};
-
 //Adds infoWindow in Map
 function postInfo(latitude, longitude, map, contentString) {
     
@@ -183,5 +187,6 @@ function watchForm() {
         getAir(searchTerm);
 });
 };
+
 
 $(watchForm);
