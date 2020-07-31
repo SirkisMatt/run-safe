@@ -200,7 +200,13 @@ hr {
     font-size: 1.5em; 
     padding-bottom: 30px;
 }
+#aqi-title h3 {
+    font-size: 1.5em;
+}
 
+#aqi-title p {
+font-size: 1em;
+}
 /* The grid: Three equal columns that floats next to each other */
 
 .container {
@@ -231,6 +237,7 @@ hr {
 .column:hover {
     transform: scale(1.1)
 }
+
 
     /*********************button border*****************/
 
@@ -357,4 +364,13 @@ hr {
         /*padding-left: 40px;*/
         text-align: center;
     }
+
+    #aqi-title h3 {
+        font-size: 1.8em;
+    }
+
+    #aqi-title p {
+    font-size: 1.2em;
+    }
+
 }

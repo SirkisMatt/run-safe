@@ -3,6 +3,9 @@
 //map and infoWindow set to global scope
 let map 
 let infoWindow = null
+//forecast set to global scope
+let forecast
+let city
 
 function initMap() {
     //initialize map on specific destination
@@ -32,12 +35,9 @@ function initMap() {
 }); 
 };
 
-//forecast set to global scope
-let forecast
-let city
+
 
 function displayResults(responseJson){
-console.log(responseJson);
     //get coords, and separate lat and lon to pass into postInfo()
     let coords = responseJson.data.city.geo
     let aqi = responseJson.data.aqi
@@ -118,7 +118,6 @@ let tbody = $("<tbody></tbody>");
         table.append(thead).append(tbody);
         //add table to the DOM
         $("#more-info").append(table);    
-        console.log(city)
         $("#forecast-header").prepend(`${city}`);
 };
 
@@ -144,7 +143,7 @@ function postInfo(latitude, longitude, map, contentString) {
 };
 
 //api key for AQI API 
-var aqiKey = 'cd6787d500a356713b424fe3ac549f5e6a1179e6';
+const aqiKey = 'cd6787d500a356713b424fe3ac549f5e6a1179e6';
 
 //Get Air quality by City
 function getAir(searchTerm){
@@ -178,12 +177,12 @@ function openTab(tabName) {
   }
 
 
-let searchTerm
+
 //listen for search and pass searchTerm into getAir()
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
-        searchTerm = $('#city').val();
+        let searchTerm = $('#city').val();
         getAir(searchTerm);
 });
 };
