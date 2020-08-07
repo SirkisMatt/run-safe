@@ -1,11 +1,28 @@
 'use strict';
 
 //map and infoWindow set to global scope
-let map 
+let map
 let infoWindow = null
 //forecast set to global scope
 let forecast
 let city
+//api key for AQI API 
+const aqiKey = 'cd6787d500a356713b424fe3ac549f5e6a1179e6';
+
+//Function runs if user inputs a city with no station
+//Grabs user IP Address and returns AQI info from nearest station
+function fetchAqiViaIp() {
+    fetch(`https://api.waqi.info/feed/here/?token=${aqiKey}`)
+    .then(response => {
+        if (response.ok) {
+        return response.json();
+        } else {
+        throw new Error(response.statusText)}
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(error => Swal.fire(`<p>So there was a problem: ${error}</p>`));
+}
+
 
 function initMap() {
     //initialize map on specific destination
@@ -38,6 +55,9 @@ function initMap() {
 
 
 function displayResults(responseJson){
+    if (responseJson.status == "error") {
+        Swal.fire(`Sorry, we don't have a reading of that city. Let's see if we can find a station near your location.`);
+    }
     //get coords, and separate lat and lon to pass into postInfo()
     let coords = responseJson.data.city.geo
     let aqi = responseJson.data.aqi
@@ -119,6 +139,7 @@ let tbody = $("<tbody></tbody>");
         //add table to the DOM
         $("#more-info").append(table);    
         $("#forecast-header").prepend(`${city}`);
+        $("#forecast-header").removeClass("hidden");
 };
 
 
@@ -142,8 +163,7 @@ function postInfo(latitude, longitude, map, contentString) {
     pm25Forecast();
 };
 
-//api key for AQI API 
-const aqiKey = 'cd6787d500a356713b424fe3ac549f5e6a1179e6';
+
 
 //Get Air quality by City
 function getAir(searchTerm){
@@ -151,15 +171,14 @@ function getAir(searchTerm){
     fetch(`https://api.waqi.info/feed/${searchTerm}/?token=` + aqiKey)
     .then(response => {
         if (response.ok) {
-        $('#js-error-message').empty();
         return response.json();
-        }
-        throw new Error(response.statusText);
+        } else {
+        throw new Error(response.statusText)}
     })
     //Pass json results to displayResults function
     .then(responseJson => displayResults(responseJson))
     .catch(err => {
-        Swal.fire(`Sorry, we don't have a reading of that city.`);
+        fetchAqiViaIp();
     }); 
 };
 
@@ -175,6 +194,15 @@ function openTab(tabName) {
     let element = document.getElementById(tabName)
     element.scrollIntoView({ behavior: 'smooth', block: 'end'});
   }
+
+function handleFirstTab(e) {
+    if (e.keyCode === 9) { // the "I am a keyboard user" key
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleFirstTab);
+    }
+}
+
+window.addEventListener('keydown', handleFirstTab);
 
 
 

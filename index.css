@@ -4,6 +4,13 @@
 body {
     background-color: #272625;
 }
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
+}
  
 * {
     box-sizing: border-box;
@@ -95,7 +102,7 @@ form.window::after {
     background-color: rgb(248, 177, 44);
 }
 .red {
-    background-color:rgb(235, 71, 71);
+    background-color: #FFADE3;
 }
 .purple {
     background-color: #E864E8;
@@ -225,6 +232,7 @@ font-size: 1em;
     display: flex; 
     align-items: center; 
     justify-content: center;
+    background-color: #272625;
     margin: .5em;
     padding : .5em;
     width  : 4em;
@@ -235,6 +243,10 @@ font-size: 1em;
 }
 
 .column:hover {
+    transform: scale(1.1)
+}
+
+.column:focus {
     transform: scale(1.1)
 }
 
@@ -257,8 +269,8 @@ font-size: 1em;
 }
 
 .r {
-    border: solid rgb(235, 71, 71);
-    color: rgb(235, 71, 71)
+    border: solid #FFADE3;
+    color: #FFADE3;
 }
 
 .p {

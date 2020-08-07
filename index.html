@@ -19,7 +19,7 @@
 <main>  
     
     <form class="window" id="search" action="/action_page.php">
-        <input type="text" placeholder="Search City" name="search" id="city">
+        <input type="text" placeholder="Search City" name="search" id="city" required>
         <button  value="submit" type="submit"><i class="fa fa-search"></i></button>
     </form>
     
@@ -37,7 +37,7 @@
     </div>
 
     <div id="tables">
-        <h2 id="forecast-header"></h2> 
+        <h2 id="forecast-header" class="hidden show"></h2> 
     <table id="more-info" class="info"></table>
     
     <br class="hidden show">
@@ -56,12 +56,12 @@
     <section id="aqi-boxes">
         
         <header class="container">
-            <div class="column g" onclick="openTab('b1');" >0-50</div>
-            <div class="column y" onclick="openTab('b2');" >51-100</div>
-            <div class="column o" onclick="openTab('b3');" >101-150</div>
-            <div class="column r" onclick="openTab('b4');" >151-200</div>
-            <div class="column p" onclick="openTab('b5');" >201-300</div>
-            <div class="column rr" onclick="openTab('b6');" >300+</div>
+            <button class="column g" onclick="openTab('b1');" >0-50</button>
+            <button class="column y" onclick="openTab('b2');" >51-100</button>
+            <button class="column o" onclick="openTab('b3');" >101-150</button>
+            <button class="column r" onclick="openTab('b4');" >151-200</button>
+            <button class="column p" onclick="openTab('b5');" >201-300</button>
+            <button class="column rr" onclick="openTab('b6');" >300+</button>
         </header>    
 
         <div class="gap-sm"></div> 
